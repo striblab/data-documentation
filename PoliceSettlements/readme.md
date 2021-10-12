@@ -21,7 +21,7 @@ St. Louis County - Thomas Stanley, assistant county attorney
 Ramsey county -- Dennis Gerhardstein
 
 
-From all of them we requested all payouts between Jan 1, 2007 and Dec 31, 2007 stemming from police misconduct allegations. We also asked the counties to include jail officer misconduct allegation payouts and that those be denoted accordingly in the data. 
+From all of them we requested all payouts between Jan 1, 2007 and Dec 31, 2017 stemming from police misconduct allegations. We also asked the counties to include jail officer misconduct allegation payouts and that those be denoted accordingly in the data. 
 
 We put out requests in early summer 2017, but it took months to get data from everybody. By that point it was nearly the end of the year. So we decided to wait until end of 2017 and then circle back to everyone to get an updated batch of data that would go through the end of 2017. 
 
