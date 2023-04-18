@@ -15,5 +15,4 @@ COPY mncis-download-and-import.sh .env mncis_import_WEEKLY.sql scripts/
 COPY my.cnf etc/mysql/
 
 WORKDIR /scripts
-CMD ["/bin/sh", "db-test.sh"]
-# CMD ["/bin/sh", "mncis-download-and-import.sh"]
+CMD ["/bin/sh", "mncis-download-and-import.sh"]
