@@ -52,7 +52,7 @@ if [ $? -ne 0 ]; then
      -X POST https://slack.com/api/chat.postMessage
 fi
 
-result=$( mysql -h "news-data.cgbgcwbxiden.us-east-2.rds.amazonaws.com" crime -A < mncis_import_WEEKLY.sql 2>&1 | jq -asR)
+result=$( mysql -h "news-data-testing.stribapps.com" crime -A < mncis_import_WEEKLY.sql 2>&1 | jq -asR)
 trimmed=${result:1:-1}
 
 curl -H "Content-type: application/json; charset=utf-8"\
