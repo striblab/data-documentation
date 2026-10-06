@@ -16,7 +16,9 @@ It was built to run in a Docker container so that it can be deployed
 to ECS, and the Dockerfile handles all the dependencies. But it could
 be run outside a container with the following dependencies:
 - curl: used to download the data and post updates to Slack
-- mysql-client: for executing the sql script (the crime database is a mysql db)
+- mysql-client: for executing the sql script (the crime database is a mysql db).
+This needs to be Oracle's MySQL client (8.0+), not the MariaDB client: the
+Aurora MySQL 8.4 server requires TLS and caching_sha2_password auth.
 - jq: this is only used to escape the output of the mysql command for json
 so it can be sent to Slack.
 
@@ -35,15 +37,22 @@ newsroom database table. It looks like this:
 user=<username>
 password=<pw>
 ```
-For local development not using Docker (not recommended!), this could be renamed
-to .my.cnf and placed in the ~ home folder.
+The script passes it to mysql with `--defaults-extra-file`, so it just needs
+to sit next to the script.
+
+The script also verifies the database's TLS certificate against
+`rds-global-bundle.pem`, the public AWS RDS CA bundle, which is checked in. If
+AWS rotates its CAs, refresh it from
+https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
 
 ## Deployment
 
 This application is meant to be deployed on AWS Elastic Container Service.
 
 First, build an image and post it to the Elastic Container Registry. It's
-probably best to just follow the "push commands" instructions there. The
+probably best to just follow the "push commands" instructions there, but
+note that the ECS task runs on x86_64, so on an Apple Silicon Mac build with
+`docker build --platform linux/amd64 ...`. The
 current repo for this project is called "auto-mncis-repo".
 
 Next, in ECS, create a new task definition using the code just posted

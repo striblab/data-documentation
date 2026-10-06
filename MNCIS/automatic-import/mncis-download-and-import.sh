@@ -52,7 +52,10 @@ if [ $? -ne 0 ]; then
      -X POST https://slack.com/api/chat.postMessage
 fi
 
-result=$( mysql -h "news-data-testing.stribapps.com" crime -A < mncis_import_WEEKLY.sql 2>&1 | jq -asR)
+result=$( mysql --defaults-extra-file=my.cnf\
+    --ssl-mode=VERIFY_CA --ssl-ca=rds-global-bundle.pem\
+    --local-infile=1\
+    -h "news-data.stribapps.com" crime -A < mncis_import_WEEKLY.sql 2>&1 | jq -asR)
 trimmed=${result:1:-1}
 
 curl -H "Content-type: application/json; charset=utf-8"\
