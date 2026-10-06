@@ -1,10 +1,19 @@
 # MNCIS automatic-import
 
+> **Retired October 2026.** The weekly MNCIS import now runs as AWS Lambda
+> functions from [striblab/mncis-importer](https://github.com/striblab/mncis-importer)
+> (CloudFormation stack `mncis-importer`, Tuesdays at 9am Central).
+>
+> This ECS job's EventBridge rule, `mncis-weekly-import`, is **disabled** and
+> left in place only as a fallback. Don't re-enable it while the new job's
+> `mncis-download-weekly` schedule is enabled, or both will replace the
+> tables. This code is kept for reference and isn't maintained.
+
 This script downloads the latest files from the Minnesota Courts (MNCIS)
 ftp server and then imports the data into the news-data database.
 
 It's meant to be deployed to the AWS Elastic Container Service, where it
-can be set up to run as a scheduled task. It's currently set to run weekly.
+can be set up to run as a scheduled task.
 
 ## Local setup
 
